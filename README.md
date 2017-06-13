@@ -14,7 +14,7 @@ Should have enough to just check out, load solution, and load missing packages w
 
 ### Current Features
 
--Vote a cost point using num pad. (TODO fibonacci cards or something)
--Change to a different channel (no security!)
--Engage in a fake Twitch chat for emoticon fun PogChamp
--Toggle between 2 views. 1 for the presenter or product owner, and one that is more friendly for just 1 user's mobile device.
+- Vote a cost point using num pad. (TODO fibonacci cards or something)
+- Change to a different channel (no security!)
+- Engage in a fake Twitch chat for emoticon fun PogChamp
+- Toggle between 2 views. 1 for the presenter or product owner, and one that is more friendly for just 1 user's mobile device.
