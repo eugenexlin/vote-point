@@ -1,7 +1,7 @@
 # vote-point
 
 Cost Point voting app for SCRUM.
-Currently Hosted http://azure.djdenpa.com/
+Currently Hosted http://vote.djdenpa.com/
 
 ### Summary
 
