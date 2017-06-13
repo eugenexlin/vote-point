@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotePoint", "VotePoint\VotePoint.csproj", "{2D42A67F-2015-44D1-822F-2DE3082EE938}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotePointLib", "VotePointLib\VotePointLib.csproj", "{F6BE1B09-B567-43F6-812A-153F1F48246C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VotePointLib.Test", "VotePointLib.Test\VotePointLib.Test.csproj", "{FF25AF74-5A8D-4ADB-A46C-A7613F2AFED4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2D42A67F-2015-44D1-822F-2DE3082EE938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D42A67F-2015-44D1-822F-2DE3082EE938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D42A67F-2015-44D1-822F-2DE3082EE938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D42A67F-2015-44D1-822F-2DE3082EE938}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6BE1B09-B567-43F6-812A-153F1F48246C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6BE1B09-B567-43F6-812A-153F1F48246C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6BE1B09-B567-43F6-812A-153F1F48246C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6BE1B09-B567-43F6-812A-153F1F48246C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FF25AF74-5A8D-4ADB-A46C-A7613F2AFED4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FF25AF74-5A8D-4ADB-A46C-A7613F2AFED4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FF25AF74-5A8D-4ADB-A46C-A7613F2AFED4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FF25AF74-5A8D-4ADB-A46C-A7613F2AFED4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

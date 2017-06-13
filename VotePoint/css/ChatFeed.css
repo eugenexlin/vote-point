@@ -1,0 +1,139 @@
+﻿
+.chat-feed {
+    position: fixed;
+    z-index: 2;
+    bottom: 140px;
+    right: 0;
+    width: 330px;
+    max-width: 100vw;
+    background-color: rgba(245,245,245,0.9);
+    font-size: 12px;
+    line-height: 20px;
+    vertical-align: bottom;
+    box-sizing: initial;
+    padding: 0;
+}
+
+#chat-messages{
+	padding-left:15px;
+	padding-right:15px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	max-height:70vh;
+}
+
+.chat-message{
+	margin: 0.2em 0em;
+	word-wrap:break-word;
+	min-height:20px;
+}
+
+.chat-message.system{
+	font-style:italic;
+	color: #668;
+}
+
+.chat-user-name{
+	display:inline;
+	font-weight:bold;
+	color:#575;
+}
+
+.chat-user-name.unknown{
+	color:#468;
+}
+
+.chat-html{
+	display:inline;
+}
+
+#chat-textarea {
+    position: relative;
+    display: block;
+    overflow: auto;
+    min-width: 100%;
+    min-height: 3em;
+    padding: 0.5em;
+
+    border-radius:0;
+    border-style: none;
+    border-color: Transparent;
+    outline:none;
+    overflow: auto;
+
+    background: white;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    resize: none;
+}
+.chat-input-table  {
+    margin-top: 10px;
+}
+.chat-input-table td{
+    margin:0;
+    padding:0;
+}
+
+#chat-submit {
+    display:inline-block;
+    width: 30px;
+    height: 30px;
+    text-align:center;
+    line-height:30px;
+    color: #fff;
+    background-color:#888;
+    border: none;
+    cursor:pointer;
+}
+#chat-submit:hover {
+    background-color: #999;
+}
+#chat-submit:active {
+    background-color: #666;
+}
+
+.emoticon-holder {
+    position: relative;
+    vertical-align: top;
+    position: relative;
+    display: inline-block;
+    line-height: 16px;
+    height: 16px;
+    overflow: visible;
+}
+
+
+.emoticon-placeholder{
+	position:relative;
+	opacity:0;
+}
+.emoticon{
+	position:relative;
+	margin-top:-3px;
+	pointer-events: none;
+}
+
+.emoticon-text{
+	position:absolute;
+	overflow:hidden;
+	width:1px;
+	height:1px;
+	padding:0;
+	margin:0;
+}
+
+
+@media (max-width: 800px) {
+	.chat-feed {
+		bottom: 105px;
+	}
+	#chat-messages{
+	}
+}
+@media (max-width: 400px) {
+	.chat-feed {
+		bottom: 85px;
+	}
+	#chat-messages{
+	}
+}

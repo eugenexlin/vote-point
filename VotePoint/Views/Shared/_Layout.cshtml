@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Cost Point</title>
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    @RenderSection("styles", required: false)
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Vote Point", "Index", "", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="javascript:showSampleIcons();">Change Icon</a>
+                    </li>
+                    <li>
+                        <a href="javascript:showNameChange();">Change Name</a>
+                    </li>
+                    <li>
+                        <a href="javascript:fetchQRCode();">QR Code</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="icon-select-container subtle-border" style="display:none;">
+        <div id="icon-select-icons" class="icon-select-icons">
+
+        </div>
+    </div>
+    <div class="name-input-container subtle-border" style="display:none;">
+        <div class="name-input-label">Enter Name:</div>
+        <div style="width:100%; margin-top:1em">
+            <input id="nameInput" type="text" />
+        </div>
+        <div style="margin-top:1em; text-align:right;">
+            <button type="button" id="btnNameInput">Enter</button>
+        </div>
+    </div>
+
+    <div class="qr-code-container" style="display:none;">
+        <img id="qr-canvas"/>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        @*<hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Cost Point Voting by the Eug lel</p>
+        </footer>*@
+    </div>
+
+    <div id="voteChatFeed"></div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/std.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="@Url.Content("~/Scripts/UserSettings.jsx")"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

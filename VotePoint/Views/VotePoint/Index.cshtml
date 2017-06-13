@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@section styles {
+    <link href="~/css/VotePoint.css?v=2" rel="stylesheet" type="text/css" />
+    <link href="~/css/ChatFeed.css?v=2" rel="stylesheet" type="text/css" />
+    <link href="~/css/jquery.numpad.css" rel="stylesheet" type="text/css" />
+
+}
+
+<div></div>
+<div class="card-area">
+    <div id="votePointReact"></div>
+</div>
+<div class="div-input-cost"><input type="text" id="inputCost" /></div>
+<div class="div-open-numpad generic-clickable round-screen-button"
+     onclick="openNumPad();"
+><table><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td></tr><tr><td class="invis"></td><td></td><td class="invis"></td></tr></table></div>
+
+@*<div class="channel-background-display no-select">
+    <div id="">
+    </div>
+    <div class="channel-display">
+        Channel <span id="spanChannelNum"></span>
+    </div>
+
+</div>*@
+
+@section scripts {
+    <script src="~/Scripts/jdenticon-1.4.0.min.js"></script>
+    <script src="~/Scripts/react/react.js"></script>
+    <script src="~/Scripts/react/react-dom.js"></script>
+    <script src="~/Scripts/react/react.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.2.min.js"></script>
+    <script src="~/Scripts/jquery.numpad.js"></script>
+    <script src="~/Scripts/jquery.niceScroll.min.js"></script>
+    <script src="~/SignalR/hubs"></script>
+    <script src="@Url.Content("~/Scripts/VotePoint.jsx")"></script>
+    <script src="@Url.Content("~/Scripts/ChatFeed.jsx")"></script>
+}
+
+<script>
+</script>

@@ -1,0 +1,146 @@
+﻿html {
+	width:100%;
+}
+body {
+	box-sizing:border-box;
+    padding-top: 50px;
+    padding-bottom: 20px;
+	width:100%;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+	max-width:800px;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.name-input-label{
+	font-weight:bold;
+	font-size:1.1em;
+}
+
+.icon-select-container{
+	position:fixed;
+	width:100%;
+	height:auto;
+	right:0;
+	max-width:640px;
+	background-color:#fff;
+	z-index:5;
+}
+
+.name-input-container{
+	position:fixed;
+	width:300px;
+	top:20%;
+	left: 50%;
+	margin-left: -150px;
+	background-color:#fff;
+	z-index:5;
+	padding:2em;
+}
+
+#nameInput{
+	border:none;
+    box-shadow: inset 1px 1px 2px 0px rgba(0,0,0,0.2);
+	padding:4px 10px;
+	width:100%;
+}
+
+
+.icon-select-icons{
+	text-align:center;
+	margin-top:1em;
+	margin-left:1em;
+}
+.icon-select-icon{
+	display:inline-block;
+	padding:0;
+	vertical-align: top; /*removes extra white space for inline block. font-size 0 also kills margin for some reason*/
+	margin-bottom:1em;
+	margin-right:1em;
+}
+.icon-select-icon svg{
+	display:block;
+    box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.4);
+	transition:background-color 0.5s ease;
+}
+.icon-select-icon svg:hover{
+	box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.4), 0px 0px 2px 3px rgba(0,150,200,0.4);
+}
+.icon-select-icon svg:active{
+	background-color:#ddd;
+    box-shadow: inset 1px 1px 2px 0px rgba(0,0,0,0.4);
+	transition:none;
+}
+
+.qr-code-container{
+	position:fixed;
+	z-index:50;
+	width:100%;
+	height:100%;
+	top: 0;
+    bottom: 0;
+	left: 0;
+    right: 0;
+	background-color:rgba(0,0,0,0.5);
+}
+#qr-canvas{
+	top: 50%; 
+	left: 50%;
+	position:absolute;
+	background:#fff;
+	
+}
+
+@media (min-width: 356px) and (min-height: 356px) {
+	#qr-canvas{
+		width:256px;
+		height:256px;
+		margin-left:-128px;
+		margin-top:-128px;
+	}
+}
+@media (min-width: 612px) and (min-height: 612px) {
+	#qr-canvas{
+		width:512px;
+		height:512px;
+		margin-left:-256px;
+		margin-top:-256px;
+	}
+}
+@media (min-width: 868px) and (min-height: 868px) {
+	#qr-canvas{
+		width:768px;
+		height:768px;
+		margin-left:-384px;
+		margin-top:-384px;
+	}
+}
+
+
+.no-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.box-sizing-border {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+}

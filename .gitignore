@@ -1,3 +1,8 @@
+.vs/
 packages/
 VotePoint/bin/
 VotePoint/obj/
+VotePointLib/bin/
+VotePointLib/obj/
+VotePointLib.Test/bin/
+VotePointLib.Test/obj/
