@@ -31,8 +31,9 @@ namespace VotePointLib
 					char[] delimiterChars = { '.' };
 					name = name.Split(delimiterChars)[0];
 				}
-				Bitmap bmp = new Bitmap(oFile.FullName);
-				AddEmoteMapping(name, EMOTE_PATH + oFile.Name, bmp.Width);
+				using (Bitmap bmp = new Bitmap(oFile.FullName)){
+					AddEmoteMapping(name, EMOTE_PATH + oFile.Name, bmp.Width);
+				}
 			}
 
 		}
