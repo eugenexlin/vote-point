@@ -57,7 +57,7 @@ namespace VotePoint.Hubs
 		{
 			bool isChannelChanged = true;
 			Task unregisterTask = null;
-			JoinState prevState = getJoinState();
+			JoinState prevState = getJoinState(false);
 			if (prevState.isValid())
 			{
 				if (channelNum != prevState.channel.id)
