@@ -525,6 +525,7 @@
     <None Include="Properties\PublishProfiles\IIS.pubxml" />
     <Content Include="Scripts\ChatFeed.jsx" />
     <None Include="Properties\PublishProfiles\VoteMachine - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\VotePoint - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\VotePoint - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery.nicescroll.min.js" />

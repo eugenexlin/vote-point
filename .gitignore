@@ -6,4 +6,5 @@ VotePointLib/bin/
 VotePointLib/obj/
 VotePointLib.Test/bin/
 VotePointLib.Test/obj/
+VotePoint/Properties/PublishProfiles/
 *.user
