@@ -23,6 +23,13 @@ namespace VotePointLib
 			this.group = Convert.ToString(id);
 		}
 
+		public void removeAllUsers()
+		{
+			costVotes.Clear();
+			idToUser.Clear();
+			showVotes = false;
+		}
+
 		public void removeUser(string id)
 		{
 			costVotes.Remove(id);

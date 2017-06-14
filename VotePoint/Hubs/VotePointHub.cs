@@ -53,6 +53,18 @@ namespace VotePoint.Hubs
 			return Groups.Remove(Context.ConnectionId, state.channel.group);
 		}
 
+		public void ResetChannelUsers()
+		{
+			JoinState state = getJoinState();
+			if (!state.isValid()) { return; }
+
+			SendSystemMessage(state.channel, String.Format("<strong>{0}</strong> is resetting the channel", state.user.name));
+
+			state.channel.removeAllUsers();
+			
+			Clients.Group(state.channel.group).reregisterUser();
+		}
+
 		public void RegisterUser(string userId, string name, string iconHash, int channelNum)
 		{
 			bool isChannelChanged = true;

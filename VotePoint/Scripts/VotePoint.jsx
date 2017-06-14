@@ -47,15 +47,8 @@ function votePointSaveSavedChannel(channel) {
 }
 
 
-
-
-var nextReregister = new Date();
 votePointHub.client.reregisterUser = function () {
-    if (nextReregister.getTime() < (new Date()).getTime()) {
-        registerSelf(votePointSavedChannel)
-        let nextDate = new Date()
-        nextReregister = nextDate.setSeconds(nextDate.getSeconds() + 10);
-    }
+    registerSelf(votePointSavedChannel)
 }
 
 //enable logging
@@ -87,6 +80,9 @@ function showAllVotes() {
 }
 function resetVotes() {
     votePointHub.server.resetVotes(votePointUserID);
+}
+function resetChannel() {
+    votePointHub.server.resetChannelUsers();
 }
 
 function addRandomUser() {
@@ -589,6 +585,9 @@ $(document).ready(function () {
 
     $(".navbar").find("ul:first").append(
         "<li><a href='javascript:toggleChannelDisplay();'>Channel</a></li>")
+
+    $(".navbar").find("ul:first").append(
+        "<li><a href='javascript:resetChannel();'>Reset</a></li>")
 
     $(".navbar").find("ul:first").prepend(
         "<li><a href='javascript:toggleScreenMode();'>Toggle View</a></li>")
