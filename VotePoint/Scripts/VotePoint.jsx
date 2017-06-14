@@ -587,7 +587,7 @@ $(document).ready(function () {
         "<li><a href='javascript:toggleChannelDisplay();'>Channel</a></li>")
 
     $(".navbar").find("ul:first").append(
-        "<li><a href='javascript:resetChannel();'>Reset</a></li>")
+        "<li><a href='javascript:resetChannel();'>Reset Users</a></li>")
 
     $(".navbar").find("ul:first").prepend(
         "<li><a href='javascript:toggleScreenMode();'>Toggle View</a></li>")
