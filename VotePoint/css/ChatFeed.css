@@ -1,7 +1,7 @@
 ﻿
 .chat-feed {
     position: fixed;
-    z-index: 2;
+    z-index: 4;
     bottom: 140px;
     right: 0;
     width: 330px;

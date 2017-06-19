@@ -139,6 +139,10 @@ function setScreenMode() {
 var VotePointFullView = true;
 if (typeof window.mobilecheck == 'function' && window.mobilecheck()) {
     VotePointFullView = false;
+    setTimeout(function () {
+        $("#card-selection-stage").show();
+        renderFibSelector();
+    },10)
 }
 
 const UserCardList = function (props) {
@@ -515,6 +519,15 @@ class App extends React.Component {
         this.setState({
             fullView: fullView
         })
+        if (!fullView) {
+            $("#card-selection-stage").show();
+            if (typeof renderFibSelector === "function") {
+                renderFibSelector();
+            }
+        } else {
+            $("#card-selection-stage").hide();
+        }
+
         jdenticon();
     }
 

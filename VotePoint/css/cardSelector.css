@@ -1,0 +1,90 @@
+﻿#card-selection-stage {
+	right: 1em;
+	top: 12em;
+	bottom: 140px;
+	position: absolute;
+	z-index: 3;
+	left: 1em;
+	overflow-y: scroll;
+	background-color: rgba(150,150,150,0.1);
+	text-align: center;
+	padding-bottom:2em;
+}
+
+.selectable-card-row {
+	display:inline-block;
+	text-align:center;
+}
+
+
+.selectable-card {
+	opacity: 0.9;
+	margin-top: 1em;
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+	vertical-align: top;
+	width: 3.2em;
+	height: 2.4em;
+	line-height: 2.2em;
+	font-size: 2.6em;
+	text-align: center;
+	border-radius: 0.2em;
+	border: 0.2em solid #fff;
+	background-color: #FFF;
+	box-shadow: 2px 2px 4px 0px rgba(0,0,0,0.4); /* inset 0px 0px 0px 1px rgba(0,0,0,0.1)*/
+}
+
+.selectable-card:hover 
+{
+	border-color: #fee;
+}
+
+.selectable-card:active 
+{
+	border-color: #f8e8e8;
+	box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.3), inset 10px 10px 0px 50px rgba(100,100,100,0.05);
+}
+
+
+
+@media (max-width: 800px) {
+	#card-selection-stage {
+		top: 10em;
+		bottom: 105px;
+	}
+
+	.selectable-card-row {
+		width: 30%;
+	}
+
+	.selectable-card {
+		margin-left:auto;
+		margin-right:auto;
+	}
+}
+@media (max-width: 600px) {
+
+	.selectable-card-row {
+		width: 40%;
+	}
+	.selectable-card {
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+
+@media (max-width: 400px) {
+	#card-selection-stage {
+		top: 8em;
+		bottom: 85px;
+	}
+
+	.selectable-card-row {
+		width: 100%;
+	}
+	.selectable-card {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+}
