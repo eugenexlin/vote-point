@@ -52,10 +52,30 @@ votePointHub.client.reregisterUser = function () {
 }
 
 //enable logging
-$.connection.hub.logging = false;
-$.connection.hub.start().done(function () {
-    registerSelf(votePointSavedChannel);
-});
+function startVotePointHub() {
+    $.connection.hub.logging = false;
+    $.connection.hub.start().done(function () {
+        registerSelf(votePointSavedChannel);
+    });
+}
+startVotePointHub();
+
+//Set up Heart Beat detection to decide if we need to restart the timeout out signalR connection.
+var HEART_BEAT_INTERVAL_MS = 2000;
+var heartBeatTime = new Date();
+setInterval(function () {
+    $(".heartbeat-indicator").fadeToggle(1000);
+    nextHeartBeatTime = new Date();
+    let needReconnect = false;
+    if ((nextHeartBeatTime - heartBeatTime) > HEART_BEAT_INTERVAL_MS * 3) {
+        needReconnect = true;
+    }
+    heartBeatTime = nextHeartBeatTime;
+    if (needReconnect) {
+        console.log("Long timeout detected. Reconnecting Hub.");
+        startVotePointHub();
+    }
+}, HEART_BEAT_INTERVAL_MS);
 
 
 function registerSelf(channel) {
