@@ -180,6 +180,53 @@ const UserCardList = function (props) {
         </div>
     );
 }
+
+const HiddenUserCardList = function (props) {
+    if (!props.fullView) {
+        return <div></div>
+    }
+    return (
+        <div >
+            {props.cards.map(card => <HiddenUserCard {...card} />)}
+        </div>
+    );
+}
+
+const UserHiderButton = (props) => {
+    const hideUser = (event) => {
+        VoteApp.hideUser(props.userId );
+    }
+    return (
+        <div className="hide-user-button" onClick={hideUser}></div>
+    );
+}
+
+const HiddenUserCard = (props) => {
+    const showUser = (event) => {
+        VoteApp.showUser(props.userId);
+    }
+    let addClass = '';
+    if (props.userId == votePointUserID) {
+        addClass += ' current-user ';
+    }
+    return (
+        <table className={'user-row' + addClass}>
+            <tbody>
+                <tr>
+                    <td>
+                        <div className='user-card subtle-border hidden-user' onClick={showUser}>
+                            <div className='div-user-name'>
+                                {props.name}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    );
+}
+
 const UserCard = function (props) {
     let addClass = '';
     if (props.userId == votePointUserID) {
@@ -191,33 +238,45 @@ const UserCard = function (props) {
         activity = moment.duration(millis).humanize() + " ago";
     }
     return (
-        <div className={'user-card subtle-border' + addClass }>
-            <input className='hdnId' type="hidden" value={props.userId} />
-            <table>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div className='svg-holder'>
-                            <svg width="100%" height="100%" data-jdenticon-hash={props.hash } data-user-id={props.userId}>
-                                No SVG Support
-                            </svg>
-                            </div>
-                        </td>
-                        <td>
-                            <div className='name-holder'>
-                               <div className='div-user-name'>
-                                   {props.name}
-                               </div>
-                               <div className='div-user-activity'>
-                                    {activity}
-                               </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <Ballot {...props}></Ballot>
-        </div>
+        <table className={'user-row' + addClass}>
+            <tbody>
+                <tr>
+                    <td>
+                        <div className='user-card subtle-border'>
+                            <UserHiderButton userId={props.userId} />
+                            <input className='hdnId' type="hidden" value={props.userId} />
+                            <table>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div className='svg-holder'>
+                                            <svg width="100%" height="100%" data-jdenticon-hash={props.hash } data-user-id={props.userId}>
+                                                No SVG Support
+                                            </svg>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div className='name-holder'>
+                                               <div className='div-user-name'>
+                                                   {props.name}
+                                               </div>
+                                               <div className='div-user-activity'>
+                                                    {activity}
+                                               </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </td>
+                    <td style={{ position: "relative" }}>
+                <Ballot {...props}></Ballot>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
     );
 }
 
@@ -415,20 +474,22 @@ class ChannelStats extends React.Component {
     }
 
     render() {
-        let voteText = "votes set";
-        if (this.state.votes == 1) {
-            voteText = "vote set"
-        }
         let userText = "connected users";
         if (this.state.users == 1) {
-            userText = "connected user"
+            userText = "connected user";
+        }
+        let voteStyle = {};
+        if (this.state.allExpectedVotes) {
+            voteStyle.color = "#696";
+        } else {
+            voteStyle.color = "#966";
         }
 
         return(
             <div className="channel-background-display no-select">
                 <div className="channel-stats">
-                    <div>
-                        {this.state.votes} {voteText}
+                    <div style={voteStyle}>
+                        {this.state.votes}/{this.state.expectedVotes} votes
                     </div>
                     <div>
                         {this.state.users} {userText}
@@ -461,6 +522,7 @@ class App extends React.Component {
                     hasVote: false,
                 }
             ],
+            hiddenUserIds: new Set(),
             colorMap : {}
         };
     }
@@ -468,7 +530,7 @@ class App extends React.Component {
     setChannel(jChannel) {
         this.setState(jChannel);
         this.actionButton.setShow(this.state.showVote);
-        setTimeout(jdenticon, 0);
+        setTimeout(jdenticon, 1);
     }
 
     //no update state because icon is not important
@@ -490,7 +552,7 @@ class App extends React.Component {
     setVote(id) {
         let card = this.getUserByID(id);
         card.hasVote = true;
-        $(votePointReact).find(".hdnId[value='" + id + "']").closest("div").find(".ballot").each(function () {
+        $(votePointReact).find(".hdnId[value='" + id + "']").closest("tr").find(".ballot").each(function () {
             var ballot = this;
             $(ballot).removeClass("set-card-animation");
             $(ballot).hide();
@@ -504,7 +566,7 @@ class App extends React.Component {
     undoVote(id) {
         let card = this.getUserByID(id);
         card.hasVote = false;
-        $(votePointReact).find(".hdnId[value='" + id + "']").closest("div").find(".ballot").each(function () {
+        $(votePointReact).find(".hdnId[value='" + id + "']").closest("tr").find(".ballot").each(function () {
             var ballot = this;
             $(ballot).removeClass("set-card-animation");
             $(ballot).fadeOut(100);
@@ -533,6 +595,16 @@ class App extends React.Component {
             this.state.colorMap[id] = getRandomHSLColor();
         }
         return this.state.colorMap[id];
+    };
+
+    hideUser(id) {
+        this.state.hiddenUserIds.add(id);
+        VoteApp.forceUpdate();
+    }
+    showUser(id) {
+        this.state.hiddenUserIds.delete(id);
+        VoteApp.forceUpdate();
+        setTimeout(jdenticon, 1);
     }
 
     toggleScreenMode(fullView) {
@@ -554,16 +626,30 @@ class App extends React.Component {
     getChannelStats() {
         let userCount = 0;
         let voteCount = 0;
+        let expectedVoteCount = 0;
+        let allExpectedVotes = true;
         for (let i = 0; i < this.state.cards.length; i++) {
             let card = this.state.cards[i];
             if (card.hasVote) {
                 voteCount += 1;
             }
             userCount += 1;
+            if (!this.state.hiddenUserIds.has(card.userId)) {
+                expectedVoteCount += 1;
+                if (!card.hasVote) {
+                    allExpectedVotes = false;
+                }
+            }
         }
+        if (expectedVoteCount <= 0) {
+            allExpectedVotes = false;
+        }
+
         var stats = new Object();
         stats.votes = voteCount;
+        stats.expectedVotes = expectedVoteCount;
         stats.users = userCount;
+        stats.allExpectedVotes = allExpectedVotes;
         stats.channel = this.state.channel;
         return stats;
     }
@@ -574,11 +660,26 @@ class App extends React.Component {
 
     render() {
         let stats = this.getChannelStats();
+
+        let showCards = [];
+        let hideCards = [];
+
+        for (let i = 0; i < this.state.cards.length; i++) {
+            let card = this.state.cards[i];
+            if (this.state.hiddenUserIds.has(card.userId)) {
+                hideCards.push(card);
+            } else {
+                showCards.push(card);
+            }
+        }
+
         return (        
             <div className="vote-app" >
                 <ChannelSelector count={64} />
                 <UserCardList fullView={this.state.fullView}
-                              cards={this.state.cards} />
+                    cards={showCards} />
+                <HiddenUserCardList fullView={this.state.fullView}
+                    cards={hideCards} />
                 <FinalVote fullView={this.state.fullView}
                            showVote={this.state.showVote}
                            averageVote={this.state.averageVote}

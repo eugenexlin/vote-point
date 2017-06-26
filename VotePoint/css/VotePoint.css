@@ -13,7 +13,7 @@
 }
 
 .ballot-container{
-	pointer-events:all;
+	pointer-events:initial;
 	position:absolute;
 	top:0;
 	right:0;
@@ -140,40 +140,64 @@
 	top:-100px;
 }
 
+.user-row {
+	margin-top:0.6em;
+	font-size: 1.6em;
+}
+
 
 .user-card{
 	position:relative;
     /*border: 1px solid #ccc;*/
-    margin: 0.5em;
     min-height:3em;
 	background-color:#fff;
 	width:14em;
-	font-size:1.6em;
+
+	pointer-events:initial;
 	opacity:0.9;
 }
 .user-card:hover{
 	opacity:1;
 }
-.current-user{
-	background-color:#e8f8ff;
+
+.hidden-user.user-card {
+	min-height: 2.4em;
+	opacity:0.5;
 }
-.current-user::after {
+
+.hidden-user .div-user-name {
+	line-height:2.4em;
+	margin-left:1em;
+	height:2.4em;
+}
+.hidden-user.user-card:hover {
+	opacity: 1;
+	cursor:pointer;
+}
+.hidden-user.user-card:active {
+	box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.1);
+}
+
+.current-user .user-card {
+	background-color: #e8f8ff;
+}
+.current-user .user-card::after {
 	position: absolute;
 	content: "You";
+	pointer-events:none;
 	right: 1em;
 	bottom: 0.2em;
 	font-weight: bold;
 	color: #9de;
 	color: rgba(50,150,200,0.3);
 	font-size: 1.2em;
-	
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome and Opera */
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome and Opera */
 }
 
 .current-user .ballot{
@@ -417,11 +441,55 @@
 	pointer-events:none;
 }
 
+.hide-user-button {
+	opacity: 0;
+	transition: opacity ease 0.2s;
+	position: absolute;
+	top: 0.2em;
+	right: 0.2em;
+	width: 32px;
+	height: 32px;
+	border-radius: 32px;
+	border: 4px solid #b44;
+	box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.2);
+}
+.hide-user-button:after {
+	content: '';
+	position: absolute;
+	width: 100%;
+	height: 4px;
+	margin-top: 10px;
+	background-color: #b44;
+	transform: rotate(-45deg);
+	box-shadow: 1px 1px 2px 0px rgba(0,0,0,0.2);
+}
+
+.hide-user-button:hover {
+	cursor: pointer;
+	border-color: #d22;
+}
+.hide-user-button:hover:after {
+	background-color: #d22;
+}
+
+.hide-user-button:active {
+	border-color: #a33;
+	box-shadow: none;
+}
+.hide-user-button:active:after {
+	background-color: #a33;
+	box-shadow: none;
+}
+
+.user-card:hover .hide-user-button{
+	opacity:1;
+}
+
 
 @media (max-width: 800px) {
 
-	.user-card {
-		font-size:1.0em;
+	.user-row {
+		font-size: 1.0em;
 	}
 	.svg-holder{
 		width:48px;
@@ -455,8 +523,8 @@
 
 @media (max-width: 400px) {
 
-	.user-card {
-		font-size:0.8em;
+	.user-row {
+		font-size: 0.8em;
 	}
 	.svg-holder{
 		width:32px;
