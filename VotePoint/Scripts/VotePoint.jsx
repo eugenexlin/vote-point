@@ -427,9 +427,6 @@ class ActionButton extends React.Component {
     }
     
     render() {
-        if (!this.state.fullView) {
-            return(<div></div>);
-        }
 
         let inner = null;
         if (this.state.showVote) {
